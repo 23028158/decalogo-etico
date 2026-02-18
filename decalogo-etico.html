@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decálogo Ético Profesional – Ingeniería en Sistemas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --personal: #f5a623;
+    --social: #50fa7b;
+    --prof: #8be9fd;
+    --accent: #ff79c6;
+    --card-bg: #161b22;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: #e6edf3;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    padding: 40px 20px 60px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* decorative blobs */
+  body::before {
+    content: '';
+    position: fixed;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(80,250,123,0.07) 0%, transparent 70%);
+    top: -100px; left: -200px;
+    pointer-events: none;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,233,253,0.07) 0%, transparent 70%);
+    bottom: -100px; right: -100px;
+    pointer-events: none;
+  }
+
+  header {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 50px;
+    position: relative;
+  }
+
+  .badge {
+    display: inline-block;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #fff 30%, var(--prof) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 14px;
+  }
+
+  .subtitle {
+    color: #8b949e;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  /* decorative horizontal rule */
+  .rule {
+    display: flex; align-items: center; gap: 12px;
+    max-width: 900px; margin: 0 auto 50px;
+  }
+  .rule span { flex: 1; height: 1px; background: var(--border); }
+  .rule em { font-style: normal; font-size: 12px; color: #30363d; letter-spacing: 2px; text-transform: uppercase; }
+
+  /* SECTION HEADERS */
+  .section-label {
+    display: flex; align-items: center; gap: 12px;
+    max-width: 960px; margin: 0 auto 24px;
+  }
+  .section-label .icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .section-label h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  .section-label .count {
+    margin-left: auto;
+    font-size: 11px; letter-spacing: 2px; color: #30363d; text-transform: uppercase;
+  }
+
+  /* Personal */
+  .personal .icon { background: rgba(245,166,35,0.15); }
+  .personal h2 { color: var(--personal); }
+  /* Social */
+  .social .icon { background: rgba(80,250,123,0.12); }
+  .social h2 { color: var(--social); }
+  /* Profesional */
+  .profesional .icon { background: rgba(139,233,253,0.12); }
+  .profesional h2 { color: var(--prof); }
+
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    max-width: 960px;
+    margin: 0 auto 50px;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 22px;
+    position: relative;
+    overflow: hidden;
+    transition: transform .25s ease, border-color .25s ease;
+  }
+  .card:hover { transform: translateY(-4px); }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    border-radius: 16px 16px 0 0;
+  }
+  .p-card::before { background: var(--personal); }
+  .s-card::before { background: var(--social); }
+  .pr-card::before { background: var(--prof); }
+
+  .card:hover.p-card { border-color: rgba(245,166,35,0.4); }
+  .card:hover.s-card { border-color: rgba(80,250,123,0.3); }
+  .card:hover.pr-card { border-color: rgba(139,233,253,0.3); }
+
+  .card-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    opacity: .06;
+    position: absolute;
+    top: 10px; right: 16px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .p-card .card-num { color: var(--personal); }
+  .s-card .card-num { color: var(--social); }
+  .pr-card .card-num { color: var(--prof); }
+
+  .card-emoji { font-size: 1.6rem; margin-bottom: 12px; display: block; }
+
+  .card h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .p-card h3 { color: var(--personal); }
+  .s-card h3 { color: var(--social); }
+  .pr-card h3 { color: var(--prof); }
+
+  .card p { font-size: 13px; color: #8b949e; line-height: 1.6; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    max-width: 900px;
+    margin: 40px auto 0;
+    padding-top: 30px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #8b949e;
+    margin-bottom: 12px;
+  }
+
+  .dots {
+    display: flex; justify-content: center; gap: 6px; margin-top: 16px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  @media print {
+    body { background: #fff; color: #000; padding: 20px; }
+    .card { background: #f5f5f5; border: 1px solid #ddd; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">✦ Ingeniería en Sistemas Computacionales ✦</div>
+  <h1>Mi Decálogo<br>Ético Profesional</h1>
+  <p class="subtitle">10 principios que guían mi práctica como ingeniero</p>
+</header>
+
+<div class="rule">
+  <span></span><em>Ética Personal</em><span></span>
+</div>
+
+<!-- PERSONAL -->
+<div class="section-label personal">
+  <div class="icon">🧠</div>
+  <h2>Ética Personal</h2>
+  <span class="count">3 principios</span>
+</div>
+<div class="grid">
+  <div class="card p-card">
+    <div class="card-num">01</div>
+    <span class="card-emoji">🎯</span>
+    <h3>Integridad ante todo</h3>
+    <p>Actúo con honestidad en cada decisión, asumiendo la responsabilidad de mis actos incluso cuando nadie me observa.</p>
+  </div>
+  <div class="card p-card">
+    <div class="card-num">02</div>
+    <span class="card-emoji">📚</span>
+    <h3>Aprendizaje continuo</h3>
+    <p>Me comprometo a mantenerme actualizado y a crecer constantemente como persona y como profesional.</p>
+  </div>
+  <div class="card p-card">
+    <div class="card-num">03</div>
+    <span class="card-emoji">⚖️</span>
+    <h3>Equidad y justicia interna</h3>
+    <p>Trato a cada persona con el mismo respeto y consideración, sin importar su rol, posición o diferencias.</p>
+  </div>
+</div>
+
+<div class="rule">
+  <span></span><em>Ética Social</em><span></span>
+</div>
+
+<!-- SOCIAL -->
+<div class="section-label social">
+  <div class="icon">🌐</div>
+  <h2>Ética Social</h2>
+  <span class="count">3 principios</span>
+</div>
+<div class="grid">
+  <div class="card s-card">
+    <div class="card-num">04</div>
+    <span class="card-emoji">🤝</span>
+    <h3>Colaboración y empatía</h3>
+    <p>Fomento ambientes de trabajo inclusivos y empáticos, donde cada voz es escuchada y valorada.</p>
+  </div>
+  <div class="card s-card">
+    <div class="card-num">05</div>
+    <span class="card-emoji">🌿</span>
+    <h3>Responsabilidad con el entorno</h3>
+    <p>Considero el impacto social y ambiental de las tecnologías que desarrollo, promoviendo un uso sostenible.</p>
+  </div>
+  <div class="card s-card">
+    <div class="card-num">06</div>
+    <span class="card-emoji">🔓</span>
+    <h3>Acceso equitativo al conocimiento</h3>
+    <p>Contribuyo a reducir la brecha digital compartiendo conocimiento y apoyando la democratización de la tecnología.</p>
+  </div>
+</div>
+
+<div class="rule">
+  <span></span><em>Ética Profesional</em><span></span>
+</div>
+
+<!-- PROFESIONAL -->
+<div class="section-label profesional">
+  <div class="icon">💻</div>
+  <h2>Ética Profesional</h2>
+  <span class="count">4 principios</span>
+</div>
+<div class="grid">
+  <div class="card pr-card">
+    <div class="card-num">07</div>
+    <span class="card-emoji">🔒</span>
+    <h3>Protección de datos y privacidad</h3>
+    <p>Garantizo la seguridad e integridad de la información de usuarios y organizaciones, conforme a estándares éticos y legales.</p>
+  </div>
+  <div class="card pr-card">
+    <div class="card-num">08</div>
+    <span class="card-emoji">🛠️</span>
+    <h3>Calidad y rigor técnico</h3>
+    <p>Entrego soluciones robustas, bien documentadas y probadas; rechazo el trabajo descuidado que ponga en riesgo sistemas o usuarios.</p>
+  </div>
+  <div class="card pr-card">
+    <div class="card-num">09</div>
+    <span class="card-emoji">🚫</span>
+    <h3>Rechazo al uso malicioso de la tecnología</h3>
+    <p>Me niego a desarrollar o participar en proyectos que busquen dañar, manipular o vulnerar derechos de personas o sistemas.</p>
+  </div>
+  <div class="card pr-card">
+    <div class="card-num">10</div>
+    <span class="card-emoji">🏛️</span>
+    <h3>Respeto a la propiedad intelectual</h3>
+    <p>Reconozco y respeto los derechos de autor, licencias de software y contribuciones de otros profesionales e investigadores.</p>
+  </div>
+</div>
+
+<footer>
+  <p class="footer-quote">"La tecnología es poderosa; la ética, su responsabilidad."</p>
+  <div class="dots">
+    <div class="dot" style="background:var(--personal)"></div>
+    <div class="dot" style="background:var(--social)"></div>
+    <div class="dot" style="background:var(--prof)"></div>
+    <div class="dot" style="background:var(--accent)"></div>
+  </div>
+</footer>
+
+</body>
+</html>
